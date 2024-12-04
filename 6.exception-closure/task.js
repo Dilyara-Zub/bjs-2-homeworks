@@ -1,9 +1,8 @@
 ﻿const parseCount = (parseValue) => {
-    if (Number.isNaN(Number.parseFloat(parseValue))) {
-        const errorMessage = 'Невалидное значение';
-        throw new Error(errorMessage);
-    }
-    return Number.parseFloat(parseValue);
+    let parseResult = Number.parseFloat(parseValue);
+    if (Number.isNaN(parseResult)) {
+        throw new Error('Невалидное значение');
+    } return parseResult;
 }
 
 const validateCount = (parseValue) => {
@@ -24,11 +23,10 @@ class Triangle {
         this.a = a;
         this.b = b;
         this.c = c;
-        if (this.a + this.b < this.c || 
-            this.a + this.c < this.b ||
-            this.b + this.c < this.a) {
-                const errorMessage = 'Треугольник с такими сторонами не существует';
-                throw new Error(errorMessage);
+        if (a + b < c || 
+            a + c < b ||
+            b + c < a) {
+                throw new Error('Треугольник с такими сторонами не существует');
             }
     }
 
@@ -38,7 +36,7 @@ class Triangle {
     }
 
     get area() {
-        const p = (this.#perimeter / 2); 
+        const p = (this.perimeter / 2); 
         const triangleArea = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c))
         return this.#area = Number(triangleArea.toFixed(3));
     }
